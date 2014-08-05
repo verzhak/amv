@@ -8,9 +8,8 @@ extern "C"
 
 void amv_init()
 {
-	throw_if(__is_init);
-
-	__is_init = true;
+	if(! __is_init)
+		__is_init = true;
 }
 
 void amv_destroy()

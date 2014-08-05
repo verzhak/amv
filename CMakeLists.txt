@@ -46,6 +46,6 @@ target_link_libraries(amv ${libraries})
 configure_file(amv.pc.in amv.pc)
 
 install(TARGETS amv LIBRARY DESTINATION lib)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.hpp" PATTERN "build" EXCLUDE)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.hpp" PATTERN "build" EXCLUDE PATTERN ".git" EXCLUDE)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/amv.pc DESTINATION lib/pkgconfig)
 
