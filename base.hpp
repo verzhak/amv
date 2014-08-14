@@ -7,7 +7,8 @@
 	#include <cstdio>
 	#include <cstdarg>
 	#include <cstdint>
-	#include <opencv2/opencv.hpp>
+	#include <cstring>
+	#include <map>
 
 	#ifndef __MINGW32__
 
@@ -19,7 +20,7 @@
 	#include "exception.hpp"
 
 	using namespace std;
-	using namespace cv;
+//	using namespace cv;
 
 	// ############################################################################ 
 
