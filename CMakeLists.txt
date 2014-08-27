@@ -13,7 +13,7 @@ project(amv)
 find_package(OpenCV REQUIRED)
 find_package(OpenMP REQUIRED)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -Wall -pipe -std=gnu++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -Wall -pipe -fPIC -std=gnu++11")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 set(libraries ${OpenCV_LIBS})
 add_definitions(-DIS_BUILD)
@@ -24,7 +24,7 @@ if(NOT CMAKE_BUILD_TYPE)
 
 endif()
 
-set(sources base.cpp debug.cpp)
+set(sources base.cpp debug.cpp xml/xml.cpp)
 
 if(WITH_OPENGL)
 

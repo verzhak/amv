@@ -8,7 +8,9 @@
 	#include <cstdarg>
 	#include <cstdint>
 	#include <cstring>
+	#include <sstream>
 	#include <map>
+	#include <memory>
 
 	#ifndef __MINGW32__
 
@@ -18,9 +20,11 @@
 
 	#include "debug.hpp"
 	#include "exception.hpp"
+	#include "3dpart/rapidxml/rapidxml_print.hpp"
+	#include "3dpart/rapidxml/rapidxml.hpp"
 
 	using namespace std;
-//	using namespace cv;
+	using namespace rapidxml;
 
 	// ############################################################################ 
 

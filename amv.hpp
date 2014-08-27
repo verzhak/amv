@@ -8,6 +8,7 @@
 #include <amv/base.hpp>
 #include <amv/exception.hpp>
 #include <amv/debug.hpp>
+#include <amv/xml/xml.hpp>
 
 #endif
 
