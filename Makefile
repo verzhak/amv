@@ -16,12 +16,11 @@ INCLUDE_DIRS = \
 	-Wno-poison-system-directories\
 	-I. -I$(BROOT)/usr/include/ -I$(BROOT)/usr/include/libdrm/
 SRC = \
-	base.cpp debug.cpp
+	base.cpp debug.cpp xml/xml.cpp image/image.cpp file/file.cpp
 
 PREFIX = $(BROOT)/usr/
 BUILD_DIR = build/
 OUTPUT_FNAME = libamv.so
-INCLUDES_TO_INSTALL = amv.hpp base.hpp exception.hpp debug.hpp
 
 release: clean
 
@@ -32,8 +31,16 @@ release: clean
 install: release
 
 	cp $(BUILD_DIR)/$(OUTPUT_FNAME) $(PREFIX)/lib
+
 	mkdir -p $(PREFIX)/include/amv
-	cp $(INCLUDES_TO_INSTALL) $(PREFIX)/include/amv
+	mkdir -p $(PREFIX)/include/amv/xml
+	mkdir -p $(PREFIX)/include/amv/image
+	mkdir -p $(PREFIX)/include/amv/file
+
+	cp amv.hpp base.hpp exception.hpp debug.hpp $(PREFIX)/include/amv
+	cp xml/xml.hpp $(PREFIX)/include/amv/xml
+	cp image/image.hpp $(PREFIX)/include/amv/image
+	cp file/file.hpp $(PREFIX)/include/amv/file
 
 clean:
 

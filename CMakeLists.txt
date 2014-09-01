@@ -24,7 +24,7 @@ if(NOT CMAKE_BUILD_TYPE)
 
 endif()
 
-set(sources base.cpp debug.cpp xml/xml.cpp)
+set(sources base.cpp debug.cpp xml/xml.cpp image/image.cpp file/file.cpp)
 
 if(WITH_OPENGL)
 
@@ -41,11 +41,13 @@ endif()
 add_library(amv SHARED ${sources})
 target_link_libraries(amv ${libraries})
 
+add_subdirectory(test)
+
 ############################################################################ 
 
 configure_file(amv.pc.in amv.pc)
 
 install(TARGETS amv LIBRARY DESTINATION lib)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.hpp" PATTERN "build" EXCLUDE PATTERN ".git" EXCLUDE)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.hpp" PATTERN "build" EXCLUDE PATTERN ".git" EXCLUDE PATTERN "test" EXCLUDE)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/amv.pc DESTINATION lib/pkgconfig)
 
