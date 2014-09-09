@@ -4,11 +4,13 @@
 
 // Отладочная печать
 
+#include <cstdint>
+
 extern "C"
 {
 	int printf_TODO(const char * format, ...);
-	void print_count_values_in_buf(const uint16_t * buf, const unsigned height, const unsigned width);
-	void print_buf_checksum(const uint8_t * buf, const unsigned size);
+	void print_count_values_in_buf(const std::uint16_t * buf, const unsigned height, const unsigned width);
+	void print_buf_checksum(const std::uint8_t * buf, const unsigned size);
 
 	#ifndef __MINGW32__
 
