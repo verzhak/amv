@@ -1,6 +1,6 @@
 
 #include "base.hpp"
-#include "image/image.hpp"
+#include "image/bmp.hpp"
 #include "file/file.hpp"
 
 #define WORD uint16_t
@@ -78,7 +78,7 @@ void unpack_header(BITMAPHEADER & header)
 	CFile::unpack<DWORD>(& header.bmiHeader.biClrImportant);
 }
 
-void load_image(string fname, shared_ptr<uint8_t> & img, unsigned & height, unsigned & width, unsigned & channels)
+void load_bmp(string fname, shared_ptr<uint8_t> & img, unsigned & height, unsigned & width, unsigned & channels)
 {
 	uint8_t * p_img, * p_buf;
 	unsigned v, img_size, file_line_width, bits_per_sample;
@@ -113,7 +113,7 @@ void load_image(string fname, shared_ptr<uint8_t> & img, unsigned & height, unsi
 		memcpy(p_img, p_buf, file_line_width);
 }
 
-void save_image(string fname, const shared_ptr<uint8_t> & img, const unsigned height, const unsigned width, const unsigned channels)
+void save_bmp(string fname, const shared_ptr<uint8_t> & img, const unsigned height, const unsigned width, const unsigned channels)
 {
 	throw_if(channels != 3);
 

@@ -16,7 +16,7 @@ INCLUDE_DIRS = \
 	-Wno-poison-system-directories\
 	-I. -I$(BROOT)/usr/include/ -I$(BROOT)/usr/include/libdrm/
 SRC = \
-	base.cpp debug.cpp xml/xml.cpp image/image.cpp file/file.cpp
+	base.cpp debug.cpp xml/xml.cpp image/bmp.cpp file/file.cpp
 
 PREFIX = $(BROOT)/usr/
 BUILD_DIR = build/
@@ -39,7 +39,7 @@ install: release
 
 	cp amv.hpp base.hpp exception.hpp debug.hpp $(PREFIX)/include/amv
 	cp xml/xml.hpp $(PREFIX)/include/amv/xml
-	cp image/image.hpp $(PREFIX)/include/amv/image
+	cp image/bmp.hpp $(PREFIX)/include/amv/image
 	cp file/file.hpp $(PREFIX)/include/amv/file
 
 clean:

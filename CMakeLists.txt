@@ -3,20 +3,20 @@
 # Параметры сборки:
 #
 # CMAKE_BUILD_TYPE=Debug или CMAKE_BUILD_TYPE=Release (по умолчанию)
+# CMAKE_TOOLCHAIN_FILE=~/trash/mips/mips.toolchain - сборка под MIPS
 # WITH_OPENGL - поддержка OpenGL (через GLEW)
 #
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
 project(amv)
 
-find_package(OpenCV REQUIRED)
-find_package(OpenMP REQUIRED)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -Wall -pipe -fPIC -std=gnu++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe -fPIC -std=gnu++11 -Wno-poison-system-directories")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
-set(libraries ${OpenCV_LIBS})
 add_definitions(-DIS_BUILD)
+
+set(sources base.cpp debug.cpp xml/xml.cpp image/bmp.cpp file/file.cpp)
+set(libraries m)
 
 if(NOT CMAKE_BUILD_TYPE)
 
@@ -24,27 +24,38 @@ if(NOT CMAKE_BUILD_TYPE)
 
 endif()
 
-set(sources base.cpp debug.cpp xml/xml.cpp image/image.cpp file/file.cpp)
+############################################################################ 
+# Platform specific
 
-if(WITH_OPENGL)
+if(${MIPS})
 
-	find_package(OpenGL REQUIRED)
-	find_package(GLEW REQUIRED)
+else()
 
-	include_directories(${GLEW_INCLUDE_DIRS})
-	set(libraries ${libraries} ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARY})
+	find_package(OpenCV REQUIRED)
 
-	add_definitions(-DWITH_OPENGL)
+	set(sources ${sources} image/contours/morph.cpp)
+	set(libraries ${libraries} ${OpenCV_LIBS})
+
+	if(WITH_OPENGL)
+
+		find_package(OpenGL REQUIRED)
+		find_package(GLEW REQUIRED)
+
+		include_directories(${GLEW_INCLUDE_DIRS})
+		add_definitions(-DWITH_OPENGL)
+
+		set(libraries ${libraries} ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARY})
+
+	endif()
+
+	add_subdirectory(test)
 
 endif()
 
-add_library(amv SHARED ${sources})
-target_link_libraries(amv ${libraries})
-
-add_subdirectory(test)
-
 ############################################################################ 
 
+add_library(amv SHARED ${sources})
+target_link_libraries(amv ${libraries})
 configure_file(amv.pc.in amv.pc)
 
 install(TARGETS amv LIBRARY DESTINATION lib)

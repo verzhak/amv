@@ -18,6 +18,16 @@
 
 	#endif
 
+	#if __BYTE_ORDER == __LITTLE_ENDIAN
+
+		// x86, x86_64
+		
+		#include <opencv2/opencv.hpp>
+
+		using namespace cv;
+
+	#endif
+
 	#include "debug.hpp"
 	#include "exception.hpp"
 	#include "3dpart/rapidxml/rapidxml_print.hpp"
