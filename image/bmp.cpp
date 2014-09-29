@@ -100,8 +100,8 @@ void load_bmp(string fname, shared_ptr<uint8_t> & img, unsigned & height, unsign
 	file_line_width += (file_line_width & 3) ? 4 - (file_line_width & 3) : 0;
 
 	img_size = header.bmfHeader.bfSize - header.bmfHeader.bfOffBits;
-	img.reset(new uint8_t[img_size]);
-	buf.reset(new uint8_t[img_size]);
+	img.reset(new uint8_t[img_size], std::default_delete<uint8_t[]>());
+	buf.reset(new uint8_t[img_size], std::default_delete<uint8_t[]>());
 	throw_null(p_img = img.get());
 	throw_null(p_buf = buf.get());
 	p_img += file_line_width * (height - 1);
@@ -128,7 +128,7 @@ void save_bmp(string fname, const shared_ptr<uint8_t> & img, const unsigned heig
 		file_line_width += 4 - (file_line_width & 3);
 
 	img_size = file_line_width * height;
-	buf.reset(new uint8_t[img_size]);
+	buf.reset(new uint8_t[img_size], std::default_delete<uint8_t[]>());
 	throw_null(p_img = img.get());
 	throw_null(p_buf = buf.get());
 	p_buf += file_line_width * (height - 1);

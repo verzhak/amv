@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include <cstdint>
+#include <memory>
 #include <endian.h>
 
 enum EFileMode
@@ -22,9 +23,11 @@ class CFile
 		~CFile();
 
 		void read(void * buf, const size_t size);
+		std::shared_ptr<std::uint8_t> read_all();
 		void write(const void * buf, const size_t size);
 		void seek(const std::uint32_t offset);
 		long offset();
+		unsigned size();
 
 		inline void operator()(void * buf, const size_t size) { read(buf, size); };
 

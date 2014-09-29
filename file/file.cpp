@@ -42,10 +42,38 @@ long CFile::offset()
 	return ftell(fl);
 }
 
+unsigned CFile::size()
+{
+	const long pos = offset();
+
+	throw_if(fseek(fl, 0, SEEK_END));
+
+	const long sz = offset();
+
+	throw_if(sz < 0);
+	seek(pos);
+
+	return sz;
+}
+
 void CFile::read(void * buf, const size_t size)
 {
 	throw_if(__mode != EFileModeBinaryRead);
 	throw_if(fread(buf, size, 1, fl) != 1);
+}
+
+shared_ptr<uint8_t> CFile::read_all()
+{
+	const unsigned sz = size();
+	shared_ptr<uint8_t> buf;
+
+	if(sz)
+	{
+		buf.reset(new uint8_t[sz], std::default_delete<uint8_t[]>());
+		read(buf.get(), sz);
+	}
+
+	return buf;
 }
 
 void CFile::write(const void * buf, const size_t size)
