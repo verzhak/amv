@@ -63,6 +63,13 @@ CXML CXML::operator+(const CXML & op)
 	return ret;
 }
 
+CXML & CXML::operator+=(const CXML & op)
+{
+	add(* this, op);
+	
+	return * this;
+}
+
 CXML & CXML::operator[](const string ind)
 {
 	throw_if(! exist(ind));

@@ -28,6 +28,7 @@ class CXML
 		CXML(const std::string __tag);
 
 		CXML operator+(const CXML & op);
+		CXML & operator+=(const CXML & op);
 		CXML & operator[](const std::string ind);
 		CXML & get(const std::string ind);
 		std::string pack() const;
