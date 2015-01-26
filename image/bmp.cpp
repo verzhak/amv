@@ -1,7 +1,6 @@
 
-#include "base.hpp"
+#include "base/base.hpp"
 #include "image/bmp.hpp"
-#include "file/file.hpp"
 
 #define WORD uint16_t
 #define DWORD uint32_t

@@ -1,19 +1,15 @@
 
-#include "base.hpp"
+#include "base/base.hpp"
 #include "xml/xml.hpp"
 
 CXML::CXML()
 {
-	throw_if(! is_init());
-
 	tag = "";
 	value = "";
 }
 
 CXML::CXML(const string __tag)
 {
-	throw_if(! is_init());
-
 	tag = __tag;
 	value = "";
 }

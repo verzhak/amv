@@ -7,6 +7,9 @@
 #include <memory>
 #include <endian.h>
 
+namespace amv
+{
+
 enum EFileMode
 {
 	EFileModeBinaryRead, EFileModeBinaryWrite
@@ -102,6 +105,8 @@ class CFile
 				write((void *) __p_buf, size);
 			}
 };
+
+}
 
 #endif
 

@@ -1,5 +1,5 @@
 
-#include "base.hpp"
+#include "base/base.hpp"
 #include "file/file.hpp"
 
 CFile::CFile(const string fname, const EFileMode mode) :
@@ -69,7 +69,7 @@ shared_ptr<uint8_t> CFile::read_all()
 
 	if(sz)
 	{
-		buf.reset(new uint8_t[sz], std::default_delete<uint8_t[]>());
+		buf.reset(new uint8_t[sz], default_delete<uint8_t[]>());
 		read(buf.get(), sz);
 	}
 

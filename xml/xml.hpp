@@ -7,6 +7,9 @@
 #include <sstream>
 #include <cstdlib>
 
+namespace amv
+{
+
 class CXML
 {
 	std::map<std::string, CXML> childs;
@@ -50,8 +53,10 @@ class CXML
 
 			stream << __value;
 			value = stream.str();
-		};
+		}
 };
+
+}
 
 #endif
 
