@@ -2,6 +2,9 @@
 #ifndef AMV_DEBUG_HPP
 #define AMV_DEBUG_HPP
 
+#include <cstdio>
+#include <cstring>
+
 namespace amv
 {
 
