@@ -39,17 +39,17 @@ namespace amv
 
 #endif
 
-#define DEBUG printf_prefix("Debug", __FILE__, __LINE__, __format, __param);
+#define DEBUG amv::printf_prefix("Debug", __FILE__, __LINE__, __format, __param);
 
 #define DEBUG_ONLY_ERROR \
 {\
 	if(__condition || std::errno)\
-		printf_prefix("Debug", __FILE__, __LINE__, __format, __param);\
+		amv::printf_prefix("Debug", __FILE__, __LINE__, __format, __param);\
 }
 
 #define throw_ \
 {\
-	printf_prefix("Exception", __FILE__, __LINE__, __format, __param);\
+	amv::printf_prefix("Exception", __FILE__, __LINE__, __format, __param);\
 	throw 1;\
 };
 

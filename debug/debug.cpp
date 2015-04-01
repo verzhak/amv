@@ -23,7 +23,7 @@ int amv::printf_prefix(const string prefix, const string fname, const unsigned l
 	va_list args;
 
 	throw_null_(p_buf);
-	sprintf(p_buf, "[ %s ] File: %s, line: %u, errno: %s, info: [ %s ]", prefix.c_str(), fname.c_str(), lnum, err_msg.c_str(), format);
+	sprintf(p_buf, "[ %s ] File: %s, line: %u, errno: %s, info: [ %s ]\n", prefix.c_str(), fname.c_str(), lnum, err_msg.c_str(), format);
 
 	va_start(args, format);
 	ret = vprintf(p_buf, args);

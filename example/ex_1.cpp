@@ -8,6 +8,8 @@ int main()
 {
 	printf_TODO("IN\n");
 
+	DEBUG;
+
 	return 0;
 }
 
