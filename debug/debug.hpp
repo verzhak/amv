@@ -27,29 +27,29 @@ namespace amv
 
 #ifdef WITH_OPENGL
 
-	#define __condition glGetError()
-	#define __format "gl: %u"
-	#define __param glGetError()
+	#define amv_opengl_condition glGetError()
+	#define amv_opengl_format "gl: %u"
+	#define amv_opengl_param glGetError()
 
 #else
 
-	#define __condition true
-	#define __format ""
-	#define __param 0
+	#define amv_opengl_condition true
+	#define amv_opengl_format ""
+	#define amv_opengl_param 0
 
 #endif
 
-#define DEBUG amv::printf_prefix("Debug", __FILE__, __LINE__, __format, __param);
+#define DEBUG amv::printf_prefix("Debug", __FILE__, __LINE__, amv_opengl_format, amv_opengl_param);
 
 #define DEBUG_ONLY_ERROR \
 {\
-	if(__condition || std::errno)\
-		amv::printf_prefix("Debug", __FILE__, __LINE__, __format, __param);\
+	if(amv_opengl_condition || std::errno)\
+		amv::printf_prefix("Debug", __FILE__, __LINE__, amv_opengl_format, amv_opengl_param);\
 }
 
 #define throw_ \
 {\
-	amv::printf_prefix("Exception", __FILE__, __LINE__, __format, __param);\
+	amv::printf_prefix("Exception", __FILE__, __LINE__, amv_opengl_format, amv_opengl_param);\
 	throw 1;\
 };
 
