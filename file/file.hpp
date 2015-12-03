@@ -6,7 +6,6 @@
 #include <cstdint>
 #include <memory>
 #include <typeinfo>
-#include <endian.h>
 
 namespace amv
 {
