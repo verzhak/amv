@@ -3,6 +3,7 @@
 # Параметры сборки:
 #
 # CMAKE_BUILD_TYPE=Debug или CMAKE_BUILD_TYPE=Release (по умолчанию)
+# CMAKE_TOOLCHAIN_FILE=~/trash/mips/mips.toolchain - сборка под MIPS
 # WITH_OPENGL - поддержка OpenGL (через GLEW)
 #
 
